@@ -1,0 +1,30 @@
+models:
+  Company:
+    name: string
+    relationships:
+      hasMany: Contact, Meeting
+  Contact:
+    name: string
+    email: string
+    relationships:
+      belongsTo: Company
+      hasMany: actionItem
+  Meeting:
+    name: string
+    date: date
+    time: time
+    relationships:
+      belongsTo: Company
+      hasMany: Note, ActionItem, Contact
+    
+  Note:
+    note: string
+    relationships:
+      belongsTo: Meeting
+  ActionItem:
+    action: string
+    due_date: date
+    status: string
+    title: string
+    relationships:
+      belongsTo: Meeting, Contact

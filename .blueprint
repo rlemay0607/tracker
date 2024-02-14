@@ -1,0 +1,23 @@
+created:
+    - database/factories/CompanyFactory.php
+    - database/factories/ContactFactory.php
+    - database/factories/MeetingFactory.php
+    - database/factories/NoteFactory.php
+    - database/factories/ActionItemFactory.php
+    - database/migrations/2024_02_11_211908_create_companies_table.php
+    - database/migrations/2024_02_11_211909_create_contacts_table.php
+    - database/migrations/2024_02_11_211910_create_meetings_table.php
+    - database/migrations/2024_02_11_211911_create_notes_table.php
+    - database/migrations/2024_02_11_211912_create_action_items_table.php
+    - app/Models/Company.php
+    - app/Models/Contact.php
+    - app/Models/Meeting.php
+    - app/Models/Note.php
+    - app/Models/ActionItem.php
+models:
+    User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string:100 nullable' }
+    Company: { name: string, relationships: { hasMany: 'Contact, Meeting' } }
+    Contact: { name: string, email: string, relationships: { belongsTo: Company, hasMany: actionItem } }
+    Meeting: { name: string, date: date, time: time, relationships: { belongsTo: Company, hasMany: 'Note, ActionItem, Contact' } }
+    Note: { note: string, relationships: { belongsTo: Meeting } }
+    ActionItem: { action: string, due_date: date, status: string, title: string, relationships: { belongsTo: 'Meeting, Contact' } }
